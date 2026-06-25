@@ -181,6 +181,21 @@ section h2 {
     display: block;
 }
 
+.local-video-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 2rem 0;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: #000;
+}
+
+.local-video-container video {
+    width: 100%;
+    display: block;
+    max-height: 500px;
+}
+
 /* About Section */
 .about-content {
     display: grid;
@@ -442,9 +457,13 @@ footer {
                 </div>
             </div>
 
-            <p style="text-align: center; color: #cbd5e1; margin: 2rem 0;">
-                🎨 Animacja syrenki przygotowywana do uploadu na YouTube
-            </p>
+            <h3 style="color: #6366f1; text-align: center; margin: 2rem 0 1rem 0;">Animacja Syrenki</h3>
+            <div class="local-video-container">
+                <video controls>
+                    <source src="syrenka.mp4" type="video/mp4">
+                    Twoja przeglądarka nie wspiera odtwarzania wideo.
+                </video>
+            </div>
         </div>
     </section>
 
