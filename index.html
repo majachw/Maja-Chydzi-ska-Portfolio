@@ -176,11 +176,6 @@ section h2 {
     border: none;
 }
 
-.video-container video {
-    width: 100%;
-    display: block;
-}
-
 .local-video-container {
     position: relative;
     overflow: hidden;
@@ -267,6 +262,90 @@ section h2 {
     color: #6366f1;
 }
 
+/* QR Code Section */
+.qr-section {
+    background: rgba(30, 41, 59, 0.4);
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    margin-top: 2rem;
+}
+
+.qr-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.qr-code-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.qr-code-box canvas {
+    border: 3px solid #6366f1;
+    border-radius: 10px;
+    padding: 1rem;
+    background: white;
+    box-shadow: 0 5px 20px rgba(99, 102, 241, 0.3);
+}
+
+.qr-description {
+    text-align: center;
+}
+
+.qr-description h3 {
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+}
+
+.qr-description p {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.qr-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: #6366f1;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #6366f1;
+    color: #6366f1;
+}
+
+.btn-secondary:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -303,6 +382,15 @@ footer {
 
     .contact-info {
         grid-template-columns: 1fr;
+    }
+
+    .qr-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .qr-code-box canvas {
+        max-width: 100%;
     }
 }
 
@@ -363,6 +451,7 @@ footer {
         <li><a href="#blender">Blender</a></li>
         <li><a href="#o-mnie">O Mnie</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#qr">QR Code</a></li>
     </ul>
 </nav>
 
@@ -538,6 +627,30 @@ footer {
         </div>
     </section>
 
+    <!-- QR Code Section -->
+    <section id="qr">
+        <div class="container">
+            <h2>📱 Podziel Się Swoim Portfolio</h2>
+            
+            <div class="qr-section">
+                <div class="qr-container">
+                    <div class="qr-code-box">
+                        <canvas id="qr-canvas"></canvas>
+                        <div class="qr-buttons">
+                            <button class="btn" onclick="downloadQR()">⬇️ Pobierz QR</button>
+                            <button class="btn btn-secondary" onclick="copyPortfolioLink()">📋 Skopiuj Link</button>
+                        </div>
+                    </div>
+                    <div class="qr-description">
+                        <h3>Zeskanuj ten kod!</h3>
+                        <p>Udostępnij ten kod QR swoim przyjaciołom, pracodawcom i recrutingowcom. Każdy może szybko zobaczyć Twoje całe portfolio za pomocą aparatu telefonu.</p>
+                        <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 1rem;">Link: majachw.github.io/Maja-Chydzi-ska-Portfolio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <!-- Footer -->
@@ -552,7 +665,52 @@ footer {
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
+// Generate QR Code
+function generateQR() {
+    const portfolioUrl = 'https://majachw.github.io/Maja-Chydzi-ska-Portfolio/';
+    const canvas = document.getElementById('qr-canvas');
+    
+    // Clear previous QR code
+    canvas.innerHTML = '';
+    
+    new QRCode(canvas, {
+        text: portfolioUrl,
+        width: 250,
+        height: 250,
+        colorDark: '#0f172a',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
+// Download QR Code
+function downloadQR() {
+    const canvas = document.getElementById('qr-canvas').querySelector('canvas');
+    if (!canvas) {
+        alert('QR kod nie został jeszcze wygenerowany. Spróbuj odświeżyć stronę.');
+        return;
+    }
+    
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = 'Maja-Portfolio-QR.png';
+    link.click();
+}
+
+// Copy Portfolio Link
+function copyPortfolioLink() {
+    const url = 'https://majachw.github.io/Maja-Chydzi-ska-Portfolio/';
+    navigator.clipboard.writeText(url).then(() => {
+        alert('Link skopiowany do schowka! 📋');
+    }).catch(() => {
+        alert('Nie udało się skopiować. Spróbuj ręcznie: ' + url);
+    });
+}
+
+// Open Lightbox
 function openLightbox(element) {
     const lightbox = document.getElementById('lightbox');
     const lightboxContent = document.getElementById('lightbox-content');
@@ -568,12 +726,13 @@ function openLightbox(element) {
     lightbox.classList.add('active');
 }
 
+// Close Lightbox
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
 }
 
-// Zamknij lightbox po kliknięciu na tło
+// Close lightbox on background click
 document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) {
         closeLightbox();
@@ -593,6 +752,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Generate QR on page load
+window.addEventListener('load', generateQR);
 </script>
 
 </body>
