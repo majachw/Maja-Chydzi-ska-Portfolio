@@ -164,6 +164,16 @@ section h2 {
     margin: 2rem 0;
     border: 1px solid rgba(148, 163, 184, 0.2);
     background: #000;
+    padding-bottom: 56.25%;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .video-container video {
@@ -305,8 +315,7 @@ footer {
     max-height: 90vh;
 }
 
-.lightbox-content img,
-.lightbox-content video {
+.lightbox-content img {
     max-width: 100%;
     max-height: 90vh;
     border-radius: 10px;
@@ -363,10 +372,7 @@ footer {
             <h2>🎮 Gra VR - Autorstwa</h2>
             
             <div class="video-container">
-                <video controls>
-                    <source src="zwiastun_gry_vr.mp4" type="video/mp4">
-                    Twoja przeglądarka nie wspiera odtwarzania wideo.
-                </video>
+                <iframe src="https://www.youtube.com/embed/mE7APPxifUE" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
             <div class="gallery">
@@ -383,7 +389,7 @@ footer {
                     <h3>Mechanika</h3>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="grademon.png" alt="Demon w grze VR">
+                    <img src="grademon.jpg" alt="Demon w grze VR">
                     <h3>Przeciwnik</h3>
                 </div>
             </div>
@@ -436,12 +442,9 @@ footer {
                 </div>
             </div>
 
-            <div class="video-container">
-                <video controls>
-                    <source src="syrenka.mp4" type="video/mp4">
-                    Twoja przeglądarka nie wspiera odtwarzania wideo.
-                </video>
-            </div>
+            <p style="text-align: center; color: #cbd5e1; margin: 2rem 0;">
+                🎨 Animacja syrenki przygotowywana do uploadu na YouTube
+            </p>
         </div>
     </section>
 
@@ -488,7 +491,7 @@ footer {
                     </ul>
 
                     <h3>O Mnie</h3>
-                    <p>Początkująca programistka i artystka 3D, ktorá chętnie się rozwija. Motywowana pasją do gier i sztuki, zawsze szukam nowych wyzwań i możliwości nauki.</p>
+                    <p>Początkująca programistka i artystka 3D, którą chętnie się rozwija. Motywowana pasją do gier i sztuki, zawsze szukam nowych wyzwań i możliwości nauki.</p>
                 </div>
             </div>
         </div>
@@ -541,12 +544,6 @@ function openLightbox(element) {
         img.src = media.src;
         lightboxContent.innerHTML = '<span class="lightbox-close" onclick="closeLightbox()">&times;</span>';
         lightboxContent.appendChild(img);
-    } else {
-        const video = document.createElement('video');
-        video.src = media.src;
-        video.controls = true;
-        lightboxContent.innerHTML = '<span class="lightbox-close" onclick="closeLightbox()">&times;</span>';
-        lightboxContent.appendChild(video);
     }
     
     lightbox.classList.add('active');
