@@ -3,25 +3,327 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
+<title>Maja Chydzińska - Game Dev Portfolio</title>
 
 <style>
-body{
-    font-family: Arial;
-    max-width:800px;
-    margin:auto;
-    padding:20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1{
-    color:#4f46e5;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    color: #e2e8f0;
+    line-height: 1.6;
 }
 
-.card{
-    border:1px solid #ddd;
-    padding:15px;
-    margin:10px 0;
-    border-radius:10px;
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #6366f1;
+}
+
+/* Header */
+header {
+    margin-top: 80px;
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, rgba(15, 23, 42, 0) 100%);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #6366f1;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #f1f5f9;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.subtitle {
+    color: #6366f1;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.bio {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    color: #cbd5e1;
+    font-size: 1rem;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section */
+section {
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+section h2 {
+    font-size: 2rem;
+    color: #f1f5f9;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #6366f1;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(30, 41, 59, 0.6);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    border-color: #6366f1;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item h3 {
+    padding: 1rem;
+    color: #f1f5f9;
+    text-align: center;
+}
+
+/* Video Section */
+.video-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 2rem 0;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: #000;
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+}
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-text h3 {
+    color: #6366f1;
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.about-text p {
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+}
+
+.skills-list {
+    list-style: none;
+    color: #cbd5e1;
+}
+
+.skills-list li {
+    padding: 0.5rem 0;
+}
+
+.skills-list li:before {
+    content: "▸ ";
+    color: #6366f1;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+/* Contact Section */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.contact-item {
+    padding: 2rem;
+    background: rgba(30, 41, 59, 0.6);
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    transition: all 0.3s;
+}
+
+.contact-item:hover {
+    border-color: #6366f1;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
+}
+
+.contact-item h3 {
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+}
+
+.contact-item a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: #6366f1;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.8);
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 10px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    color: #f1f5f9;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.lightbox-close:hover {
+    color: #6366f1;
 }
 </style>
 
@@ -29,44 +331,253 @@ h1{
 
 <body>
 
-<h1>Cześć 👋</h1>
+<!-- Navigation -->
+<nav>
+    <ul>
+        <li><a href="#gra-vr">Gra VR</a></li>
+        <li><a href="#sztuka">Sztuka</a></li>
+        <li><a href="#blender">Blender</a></li>
+        <li><a href="#o-mnie">O Mnie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+</nav>
 
-<p>
-Mam na imię [TWOJE IMIĘ].
-Jestem początkującą programistką i szukam możliwości rozwoju.
-</p>
+<!-- Header -->
+<header>
+    <div class="header-content">
+        <img src="Ja.png" alt="Maja Chydzińska" class="profile-img">
+        <h1>Maja Chydzińska</h1>
+        <p class="subtitle">Game Developer | 3D Artist | Animator</p>
+        <div class="bio">
+            <p>Pasjonata gier i sztuki cyfrowej. Specjalizuję się w tworzeniu doświadczeń VR, grafice 3D i koncepcjach artystycznych. Szukam możliwości rozwoju w branży gamedev.</p>
+        </div>
+    </div>
+</header>
 
-<h2>Moje projekty</h2>
+<!-- Main Content -->
+<main>
 
-<div class="card">
-<h3>Projekt 1</h3>
-<p>Opis projektu.</p>
-<a href="#">GitHub</a>
+    <!-- Gra VR Section -->
+    <section id="gra-vr">
+        <div class="container">
+            <h2>🎮 Gra VR - Autorstwa</h2>
+            
+            <div class="video-container">
+                <video controls>
+                    <source src="zwiastun_gry_vr.mp4" type="video/mp4">
+                    Twoja przeglądarka nie wspiera odtwarzania wideo.
+                </video>
+            </div>
+
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="grawidok.png" alt="Widok gry VR">
+                    <h3>Widok Gry</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="gradom.png" alt="Dom w grze VR">
+                    <h3>Środowisko</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="grabron.png" alt="Broń w grze VR">
+                    <h3>Mechanika</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="grademon.jpg" alt="Demon w grze VR">
+                    <h3>Przeciwnik</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sztuka Section -->
+    <section id="sztuka">
+        <div class="container">
+            <h2>🎨 Malarstwo & Concept Art</h2>
+            
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="fremenka.jpg" alt="Fremenka - prace malarskie">
+                    <h3>Fremenka</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="cos.jpg" alt="Prace artystyczne">
+                    <h3>Concept 1</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="pajak.jpg" alt="Pajak - art">
+                    <h3>Pajak</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="slimak.jpg" alt="Slimak - art">
+                    <h3>Ślimak</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="syrena.jpg" alt="Syrena - art">
+                    <h3>Syrena</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blender Section -->
+    <section id="blender">
+        <div class="container">
+            <h2>🎬 Blender - 3D & Animacja</h2>
+            
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="blendeer1.png" alt="Projekt Blender 1">
+                    <h3>3D Model 1</h3>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="blender2.png" alt="Projekt Blender 2">
+                    <h3>3D Model 2</h3>
+                </div>
+            </div>
+
+            <div class="video-container">
+                <video controls>
+                    <source src="syrenka.mp4" type="video/mp4">
+                    Twoja przeglądarka nie wspiera odtwarzania wideo.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- O Mnie Section -->
+    <section id="o-mnie">
+        <div class="container">
+            <h2>👋 O Mnie</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Passion & Skills</h3>
+                    <p>Jestem pasjonatką gamów i sztuki cyfrowej z wyraźnym kierunkiem na branżę gamedev. Mam doświadczenie w tworzeniu doświadczeń VR, 3D modelowaniu i animacji. Moje portfolio prezentuje diverse umiejętności od programowania do sztuki koncepcyjnej.</p>
+                    
+                    <h3>Zainteresowania</h3>
+                    <ul class="skills-list">
+                        <li>Game Development (VR/3D)</li>
+                        <li>3D Modeling & Animacja</li>
+                        <li>Concept Art</li>
+                        <li>Malarstwo Cyfrowe</li>
+                        <li>Design Środowisk</li>
+                    </ul>
+
+                    <h3>Poszukiwane Stanowiska</h3>
+                    <ul class="skills-list">
+                        <li>Game Developer</li>
+                        <li>3D Artist</li>
+                        <li>VR Developer</li>
+                        <li>Concept Artist</li>
+                        <li>Animator 3D</li>
+                    </ul>
+                </div>
+
+                <div class="about-text">
+                    <h3>Umiejętności Techniczne</h3>
+                    <ul class="skills-list">
+                        <li>Unity</li>
+                        <li>Blender</li>
+                        <li>C#</li>
+                        <li>VR Development</li>
+                        <li>3D Modeling</li>
+                        <li>Animacja</li>
+                        <li>Pixel Art</li>
+                        <li>Concept Design</li>
+                    </ul>
+
+                    <h3>O Mnie</h3>
+                    <p>Początkująca programistka i artystka 3D, ktorá chętnie się rozwija. Motywowana pasją do gier i sztuki, zawsze szukam nowych wyzwań i możliwości nauki.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt Section -->
+    <section id="kontakt">
+        <div class="container">
+            <h2>📬 Kontakt</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:majachydzinska9@gmail.com">majachydzinska9@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/majachw" target="_blank">github.com/majachw</a>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/maja-chydzińska-9a1154402" target="_blank">Maja Chydzińska</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Maja Chydzińska. Wszystkie prawa zastrzeżone.</p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content" id="lightbox-content">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    </div>
 </div>
 
-<div class="card">
-<h3>Projekt 2</h3>
-<p>Opis projektu.</p>
-<a href="#">GitHub</a>
-</div>
+<script>
+function openLightbox(element) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const media = element.querySelector('img, video');
+    
+    if (media.tagName === 'IMG') {
+        const img = document.createElement('img');
+        img.src = media.src;
+        lightboxContent.innerHTML = '<span class="lightbox-close" onclick="closeLightbox()">&times;</span>';
+        lightboxContent.appendChild(img);
+    } else {
+        const video = document.createElement('video');
+        video.src = media.src;
+        video.controls = true;
+        lightboxContent.innerHTML = '<span class="lightbox-close" onclick="closeLightbox()">&times;</span>';
+        lightboxContent.appendChild(video);
+    }
+    
+    lightbox.classList.add('active');
+}
 
-<h2>Kontakt</h2>
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+}
 
-<p>Email: twojemail@gmail.com</p>
+// Zamknij lightbox po kliknięciu na tło
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeLightbox();
+    }
+});
 
-<p>
-GitHub:
-<a href="https://github.com/twojlogin">
-github.com/twojlogin
-</a>
-</p>
-
-<p>
-LinkedIn:
-<a href="#">
-Twój LinkedIn
-</a>
-</p>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
 
 </body>
 </html>
